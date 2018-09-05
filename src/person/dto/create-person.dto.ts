@@ -1,17 +1,17 @@
 import { IsString, IsInt } from 'class-validator';
-import { ApiModelProperty, ApiMod } from '@nestjs/swagger';
+import { ApiModelProperty } from '@nestjs/swagger';
 
 export class CreatePersonDto {
 
-    @IsString() 
+    @IsString() // Valida que sea un string
     
-    @ApiModelProperty({example: "Agustin"})
-    readonly name: string;
+    @ApiModelProperty({example: "Agustin"})  // Para swagger
+    readonly nombre: string;
 
 
-    @IsInt() 
+    @IsInt() // Valida que sea un numero entero
 
-    @ApiModelProperty({example: 22})
-    readonly age: number;
+    @ApiModelProperty({example: 22}) // Para swagger
+    readonly edad: number;
 
 }

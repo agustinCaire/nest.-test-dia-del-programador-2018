@@ -18,7 +18,9 @@ export class PersonService {
     async get(age?: number): Promise<Person[]>{
         if(age)
             return await this.personRepository.find({
-                age: LessThan(age+1),
+                where:{
+                    edad: LessThan(age+1),
+                }
             });
         else
             return await this.personRepository.find();

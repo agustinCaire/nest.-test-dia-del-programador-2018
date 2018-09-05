@@ -1,20 +1,12 @@
 {
-  "name": "dia-del-programador-2018",
-  "version": "0.0.0",
-  "description": "description",
-  "author": "",
+  "name": "nestjs-test-dia-del-programador-2018",
+  "version": "1.0.0",
+  "description": "Prueba de nestJS - Exposicion Jornada del Dia del Programador 2018 en FCyT, UADER, Concepcion del Uruguay, Argentina",
+  "author": "Agustin Caire <agustincaire@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "format": "prettier --write \"**/*.ts\"",
     "start": "ts-node -r tsconfig-paths/register src/main.ts",
-    "start:dev": "nodemon",
-    "prestart:prod": "rm -rf dist && tsc",
-    "start:prod": "node dist/main.js",
-    "start:hmr": "node dist/server",
-    "test": "jest",
-    "test:cov": "jest --coverage",
-    "test:e2e": "jest --config ./test/jest-e2e.json",
-    "webpack": "webpack --config webpack.config.js"
+    "start:dev": "nodemon"
   },
   "dependencies": {
     "@nestjs/common": "^5.0.0",

@@ -6,11 +6,13 @@ import { LoggingInterceptor } from 'common/interceptors/logging.interceptor';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  app.useGlobalInterceptors(new LoggingInterceptor());
+  app.useGlobalInterceptors(new LoggingInterceptor()); // Usar Interceptor a nivel global
 
+
+  // Swagger Setup
   const options = new DocumentBuilder()
-  .setTitle('Person API')
-  .setDescription('API de prueba de Nest.JS que permite almacenar Personas')
+  .setTitle('API de personas')
+  .setDescription('API de prueba de Nest.JS que permite almacenar datos de Personas')
   .setVersion('1.0')
   .build();
   const document = SwaggerModule.createDocument(app, options);
