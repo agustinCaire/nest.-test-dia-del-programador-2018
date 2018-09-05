@@ -1,4 +1,4 @@
-import { Controller, Get, Param, UseFilters, Post, Body, Query, Put, Delete, UsePipes, ValidationPipe, ParseIntPipe } from '@nestjs/common';
+import { Controller, Get, Param, UseFilters, Post, Body, Query, Put, Delete, UsePipes, ValidationPipe, ParseIntPipe, HttpCode } from '@nestjs/common';
 import { Person } from './person.entity';
 import { PersonService } from './person.service';
 import { HttpExceptionFilter } from 'common/filters/http-exception.filter';
@@ -16,20 +16,20 @@ export class PersonController {
     @Post()
     @UsePipes(new ValidationPipe())
     async create(@Body() createPersonDto: CreatePersonDto) {
-        return 'This action adds a new cat';
+        return await this.personService.create(createPersonDto);
     }
 
     @Get()
     async findAll(
     ) {
-        return `This action returns all cats (limit: ${query.limit} items)`;
+        return await this.personService.get();
     }
 
     @Get(':id')
     async findOne(
         @Param('id',ParseIntPipe) id: number, 
     ) {
-        return `This action returns a #${id} cat`;
+        return await this.personService.getById(id);
     }
 
     @Put(':id')
@@ -38,12 +38,15 @@ export class PersonController {
         @Param('id',ParseIntPipe) id: number, 
         @Body() updatePersonDto: CreatePersonDto
     ) {
-        return `This action updates a #${id} cat`;
+        return await this.personService.update(id, updatePersonDto);
     }
 
     @Delete(':id')
+    @HttpCode(204)
     async remove(
         @Param('id',ParseIntPipe) id: number, 
     ) {
-        return `This action removes a #${id} cat`;
+        return await this.personService.delete(id);
     }
+
+}
