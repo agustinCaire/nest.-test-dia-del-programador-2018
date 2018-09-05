@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { Person } from './person.entity';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Repository, LessThan } from 'typeorm';
 
 @Injectable()
 export class PersonService {
@@ -15,8 +15,13 @@ export class PersonService {
         return await this.personRepository.save(person);
     }
 
-    async get(): Promise<Person[]>{
-        return await this.personRepository.find();
+    async get(age?: number): Promise<Person[]>{
+        if(age)
+            return await this.personRepository.find({
+                age: LessThan(age+1),
+            });
+        else
+            return await this.personRepository.find();
     }
 
     async getById(id: number): Promise<Person>{
